@@ -1,0 +1,10 @@
+name: "Expose project info"
+description: "Saves the project name and project version as environment variables."
+runs:
+  using: composite
+  steps:
+    - name: Expose project info
+      run: |
+        echo "PROJECT_NAME=`jq -r '.name' ./documentation/project_info.json`" >> $GITHUB_ENV
+        echo "PROJECT_VERSION=`jq -r '.version' ./documentation/project_info.json`" >> $GITHUB_ENV
+      shell: bash
